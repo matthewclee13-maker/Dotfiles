@@ -1,0 +1,223 @@
+/* ==========================================================
+   Cyber-Industrial — Custom Waybar Style
+   Author: rakarestu
+   Aesthetic: Utilitarian Brutalism / Amber Monolith
+   ========================================================== */
+
+@define-color bg-base       #08090b;
+@define-color bg-module     #12141a;
+@define-color bg-module-hov #ffb000;
+@define-color accent        #ffb000;   /* Tactical Amber */
+@define-color accent-dim    #996900;
+@define-color text-main     #ecefed;
+@define-color text-dim      #575e6a;
+@define-color warn          #f2c154;
+@define-color danger        #ff5353;
+@define-color border-color  #1a1d24;
+
+* {
+  font-family: "JetBrainsMono Nerd Font", "Fira Code", monospace;
+  font-size: 11px;
+  font-weight: 700;
+  min-height: 0;
+}
+
+window#waybar {
+  background: transparent;
+}
+
+/* ---------- Base group containers (Segmented Tactical Panels) ---------- */
+.modules-left > widget > box,
+.modules-right > widget > box,
+#clock {
+  background: @bg-base;
+  border-radius: 0px; /* Sharp grid styling */
+  border: 1px solid @accent;
+  padding: 1px 4px;
+}
+
+/* ---------- Base module shell ---------- */
+#workspaces,
+#window,
+#clock,
+#custom-launcher,
+#custom-metrics-toggle,
+#cpu,
+#memory,
+#disk,
+#pulseaudio,
+#network,
+#battery,
+#tray,
+#custom-power {
+  background: @bg-module;
+  color: @text-main;
+  border-radius: 0px;
+  border: 1px solid @border-color;
+  padding: 3px 8px;
+  margin: 2px 2px;
+  transition: none; /* Instant feedback for brutalist aesthetic */
+}
+
+/* ---------- Launcher ---------- */
+#custom-launcher {
+  color: @accent;
+  background: @bg-base;
+  border: 1px solid @accent;
+  padding: 3px 10px;
+}
+#custom-launcher:hover {
+  color: @bg-base;
+  background: @accent;
+}
+
+/* ---------- Workspaces ---------- */
+#workspaces {
+  background: transparent;
+  border: none;
+  padding: 0px;
+}
+#workspaces button {
+  color: @text-dim;
+  padding: 0px 8px;
+  border-radius: 0px;
+  border: 1px solid @border-color;
+  background: @bg-module;
+  margin: 2px 1px;
+}
+#workspaces button.active {
+  color: @bg-base;
+  background: @accent;
+  border: 1px solid @accent;
+}
+#workspaces button:hover {
+  background: @accent-dim;
+  color: @text-main;
+  border: 1px solid @accent;
+}
+
+/* ---------- Taskbar (Running Tabs) ---------- */
+#taskbar {
+  background: transparent;
+  border: none;
+  padding: 0px;
+}
+#taskbar button {
+  color: @text-dim;
+  padding: 0px 8px;
+  border-radius: 0px;
+  border: 1px solid @border-color;
+  background: @bg-module;
+  margin: 2px 2px;
+}
+#taskbar button.active {
+  color: @bg-base;
+  background: @accent;
+  border: 1px solid @accent;
+}
+#taskbar button:hover {
+  background: @accent-dim;
+  color: @text-main;
+  border: 1px solid @accent;
+}
+
+/* ---------- Window title ---------- */
+#window {
+  color: @accent;
+  background: transparent;
+  border: none;
+  font-weight: bold;
+}
+
+/* ---------- Clock (Center Focal Point) ---------- */
+#clock {
+  background: @bg-base;
+  color: @accent;
+  border: 2px solid @accent;
+  padding: 3px 15px;
+}
+
+/* ---------- System metrics drawer ---------- */
+#custom-metrics-toggle {
+  color: @accent;
+  border: 1px solid @accent-dim;
+}
+#cpu, #memory, #disk {
+  font-size: 11px;
+}
+#cpu {
+  color: @accent;
+}
+#memory {
+  color: @warn;
+}
+#disk {
+  color: @text-main;
+}
+
+/* ---------- Peripherals ---------- */
+#pulseaudio {
+  color: @text-main;
+  border-left: 3px solid @accent;
+}
+#pulseaudio.muted {
+  color: @danger;
+  border-left: 3px solid @danger;
+}
+
+#network {
+  color: @text-main;
+}
+#network.disconnected {
+  color: @danger;
+  border: 1px solid @danger;
+}
+
+#battery {
+  color: @accent;
+  border-right: 3px solid @accent;
+}
+#battery.charging {
+  color: @warn;
+}
+#battery.lowbattery:not(.charging) {
+  color: @danger;
+  border: 2px solid @danger;
+  animation: warning-blink 1s steps(2) infinite;
+}
+
+@keyframes warning-blink {
+  50% {
+    background: @danger;
+    color: @bg-base;
+  }
+}
+
+/* ---------- Tray ---------- */
+#tray {
+  background: @bg-module;
+  border: 1px solid @border-color;
+}
+
+/* ---------- Power Button ---------- */
+#custom-power {
+  color: @danger;
+  background: @bg-base;
+  border: 1px solid @danger;
+}
+#custom-power:hover {
+  color: @bg-base;
+  background: @danger;
+}
+
+/* ---------- Tooltips (Heads-up Display Look) ---------- */
+tooltip {
+  background: @bg-base;
+  border: 2px solid @accent;
+  border-radius: 0px;
+}
+tooltip label {
+  color: @text-main;
+  font-family: "JetBrainsMono Nerd Font", monospace;
+  padding: 6px;
+}

@@ -1,0 +1,116 @@
+// ==========================================================
+//  Cyber-Industrial — Shared Waybar Modules
+//  Author: rakarestu
+//  Description: Modular definitions for cross-compositor build
+// ==========================================================
+{
+  "custom/launcher": {
+    "exec": "$HOME/.config/waybar/cyber-industrial/scripts/distro-icon.sh",
+    "format": "[SYS] <span font='14'>{}</span>",
+    "interval": "once",
+    "tooltip": false,
+    "on-click": "rofi -show drun || wofi --show drun"
+  },
+
+  // ---------- CENTER ----------
+  "clock": {
+    "format": " [ {0:%H:%M} ]  |  {0:%d-%b-%y} ",
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "calendar": {
+      "mode": "month",
+      "weeks-pos": "right",
+      "on-scroll": 1,
+      "format": {
+        "months": "<span color='#ffb000'><b>{}</b></span>",
+        "days": "<span color='#ecefed'>{}</span>",
+        "weeks": "<span color='#4a4f5c'><b>W{}</b></span>",
+        "weekdays": "<span color='#ffb000'><b>{}</b></span>",
+        "today": "<span color='#0d0f12' background='#ffb000'><b>{}</b></span>"
+      }
+    }
+  },
+
+  // ---------- SYSTEM METRICS ----------
+  "group/system-metrics": {
+    "orientation": "horizontal",
+    "drawer": {
+      "transition-duration": 200,
+      "click-to-reveal": true
+    },
+    "modules": [
+      "custom/metrics-toggle",
+      "cpu",
+      "memory",
+      "disk"
+    ]
+  },
+
+  "custom/metrics-toggle": {
+    "format": "󰍛 SYS",
+    "tooltip": false
+  },
+
+  "cpu": {
+    "format": " CPU: {usage}%",
+    "interval": 2,
+    "tooltip": true
+  },
+
+  "memory": {
+    "format": "󰘚 RAM: {percentage}%",
+    "interval": 2,
+    "tooltip-format": "Used: {used:0.1f}G / {total:0.1f}G"
+  },
+
+  "disk": {
+    "format": "󰋊 DISK: {percentage_used}%",
+    "paths": ["/"],
+    "interval": 15
+  },
+
+  // ---------- PERIPHERALS ----------
+  "pulseaudio": {
+    "format": "󰕾 VOL: {volume}%",
+    "format-muted": "󰝟 VOL: MUTED",
+    "on-click": "pavucontrol",
+    "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+    "scroll-step": 5
+  },
+
+  "network": {
+    "format-wifi": "󰤨 NET: {signalStrength}%",
+    "format-ethernet": "󰈀 NET: WIRED",
+    "format-disconnected": "󰤭 NET: NO NETWORK",
+    "tooltip-format-wifi": "{essid} | Dn: {bandwidthDownBits} Up: {bandwidthUpBits}",
+    "on-click": "nm-connection-editor || networkmanager_dmenu"
+  },
+
+  "battery": {
+    "states": {
+      "lowbattery": 20
+    },
+    "format": "󰁿 BAT: {capacity}%",
+    "format-charging": "󰂄 BAT: CHG {capacity}%",
+    "format-lowbattery": "󰂃 BAT: LOW {capacity}%",
+    "format-full": "󰁹 BAT: FULL",
+    "tooltip": true
+  },
+
+  "wlr/taskbar": {
+    "format": " {icon} {title} ",
+    "icon-size": 14,
+    "on-click": "activate",
+    "max-length": 35
+  },
+
+  "tray": {
+    "icon-size": 14,
+    "spacing": 8
+  },
+
+  "custom/power": {
+    "format": " [PWR]",
+    "tooltip": false,
+    "on-click": "wlogout || archlinux-logout"
+  }
+}

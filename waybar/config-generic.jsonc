@@ -1,0 +1,46 @@
+// ==========================================================
+//  Cyber-Industrial — Waybar Config (Generic wlroots)
+//  Author: rakarestu
+// ==========================================================
+{
+  "layer": "top",
+  "position": "top",
+  "height": 38,
+  "margin-top": 4,
+  "margin-left": 8,
+  "margin-right": 8,
+  "spacing": 0,
+
+  "include": [
+    "./modules.jsonc"
+  ],
+
+  "modules-left": [
+    "custom/launcher",
+    "wlr/workspaces",
+    "wlr/taskbar"
+  ],
+  "modules-center": [
+    "clock"
+  ],
+  "modules-right": [
+    "group/system-metrics",
+    "pulseaudio",
+    "network",
+    "battery",
+    "tray",
+    "custom/power"
+  ],
+
+  "wlr/workspaces": {
+    "format": " {name} ",
+    "on-click": "activate"
+  },
+
+  "wlr/taskbar": {
+    "format": " {icon} {title} ",
+    "icon-size": 16,
+    "on-click": "activate",
+    "max-length": 35
+  }
+}
